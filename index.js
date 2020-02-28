@@ -75,7 +75,7 @@ const extractFile = (input, output, opts) => runPlugins(input, opts).then(files 
 			.then(() => {
 				return Promise.all([fsP.realpath(path.dirname(dest)), fsP.realpath(output)])
 					.then(([realDestinationDir, realOutputDir]) => {
-						if (realDestinationDir.indexOf(realOutputDir) !== 0) {
+						if (dest.indexOf(realOutputDir) !== 0 || realDestinationDir.indexOf(realOutputDir) !== 0) {
 							throw (new Error('Refusing to write outside output directory: ' + realDestinationDir));
 						}
 					});
